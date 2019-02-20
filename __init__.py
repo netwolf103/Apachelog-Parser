@@ -229,5 +229,5 @@ class ApacheLogParser(LogParser):
 		else:
 			self.remote_ips[remote_ip] = 1
 			
-logParser = ApacheLogParser('swetelove.com-access_log-20190217', u"%h %l %u %t %r %s %b \"%{Referer}i\" \"%{User-Agent}i\"")
+logParser = ApacheLogParser('access_log', u"%h %l %u %t %r %s %b \"%{Referer}i\" \"%{User-Agent}i\"")
 logParser.run(3000, 'test.html')
