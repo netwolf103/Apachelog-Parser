@@ -109,7 +109,6 @@ class ApacheLogParser(LogParser):
 			while line:
 				line_parser = apache_log_parser.make_parser(self.logformat)
 				log_line_data = line_parser(line)
-				#pprint(log_line_data)
 
 				self.processHttpResponseCode(log_line_data['status'])
 				self.processHttpRequestMethod(log_line_data['request_method'], log_line_data['request_first_line'])
@@ -122,11 +121,6 @@ class ApacheLogParser(LogParser):
 					break
 
 				counter += 1
-
-			#pprint(self.http_status)
-			#pprint(self.http_request_methods)
-			#pprint(self.user_agents)
-			#pprint(self.remote_ips)
 
 			if output != None:
 				self.output(output)
@@ -208,7 +202,7 @@ class ApacheLogParser(LogParser):
 		if self.http_status.get(statusCode) != None:
 			self.http_status[statusCode] += 1
 		else:
-			self.http_status['unknow'] = self.http_status['unknow'] + 1
+			self.http_status['unknow'] ＋= 1
 
 	def processHttpRequestMethod(self, request_method, request_line):
 		if request_method == '':
@@ -225,6 +219,6 @@ class ApacheLogParser(LogParser):
 
 	def processRemoteIp(self, remote_ip):
 		if self.remote_ips.get(remote_ip) != None:
-			self.remote_ips[remote_ip] += + 1
+			self.remote_ips[remote_ip] += 1
 		else:
 			self.remote_ips[remote_ip] = 1
