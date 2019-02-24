@@ -202,7 +202,7 @@ class ApacheLogParser(LogParser):
 		if self.http_status.get(statusCode) != None:
 			self.http_status[statusCode] += 1
 		else:
-			self.http_status['unknow'] ＋= 1
+			self.http_status['unknow'] += 1
 
 	def processHttpRequestMethod(self, request_method, request_line):
 		if request_method == '':
