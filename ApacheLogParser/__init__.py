@@ -24,7 +24,7 @@ class ApacheLogParser(LogParser):
 	def __init__(self, logfile, logformat):
 		self.logfile = logfile
 		self.logformat = logformat
-		
+
 		"""http response status."""
 		self.http_status = {
 			# http status code 1xx
@@ -77,11 +77,11 @@ class ApacheLogParser(LogParser):
 			'503': 0,
 			'504': 0,
 			'505': 0,
-			
+
 			# http status code others
 			'unknow': 0
 		}
-		
+
 		"""http request methods."""
 		self.http_request_methods = {
 			'GET': 0,
@@ -104,7 +104,7 @@ class ApacheLogParser(LogParser):
 	def run(self, limit = 100, output = None):
 		with open(self.logfile) as f:
 			line = f.readline()
-			
+
 			counter = 1
 			while line:
 				line_parser = apache_log_parser.make_parser(self.logformat)
@@ -228,6 +228,3 @@ class ApacheLogParser(LogParser):
 			self.remote_ips[remote_ip] += + 1
 		else:
 			self.remote_ips[remote_ip] = 1
-			
-logParser = ApacheLogParser('access_log', u"%h %l %u %t %r %s %b \"%{Referer}i\" \"%{User-Agent}i\"")
-logParser.run(3000, 'test.html')
